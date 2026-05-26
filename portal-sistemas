@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portal de Sistemas</title>
+
+  <style>
+    :root {
+      --azul-claro: #69A0D3;
+      --azul-escuro: #00285C;
+      --dourado: #D6AE00;
+      --fundo: #07111f;
+      --branco: #ffffff;
+      --texto: #f8fbff;
+      --texto-suave: #b9c6d8;
+      --borda: rgba(255,255,255,0.16);
+      --vidro: rgba(255,255,255,0.09);
+      --vidro-forte: rgba(255,255,255,0.14);
+      --sombra: rgba(0, 0, 0, 0.32);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0, 20, 48, 0.82), rgba(2, 7, 17, 0.92)),
+        radial-gradient(circle at top left, rgba(105,160,211,0.38), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(214,174,0,0.22), transparent 28%),
+        linear-gradient(135deg, #061225, #020711 72%);
+      color: var(--texto);
+    }
+
+    header {
+      min-height: 310px;
+      padding: 34px 24px 70px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(105,160,211,0.06) 1px, transparent 1px),
+        linear-gradient(rgba(105,160,211,0.06) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+      pointer-events: none;
+    }
+
+    .nav {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .logo-icone {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
+      box-shadow: 0 12px 30px rgba(105,160,211,0.28);
+      font-size: 24px;
+    }
+
+    .logo span strong {
+      color: var(--dourado);
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #d9e7f8;
+      font-size: 14px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 10px 14px;
+      border-radius: 999px;
+      backdrop-filter: blur(14px);
+    }
+
+    .status-ponto {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #36d399;
+      box-shadow: 0 0 18px #36d399;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .selo {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 13px;
+      margin-bottom: 18px;
+      letter-spacing: 0.3px;
+      backdrop-filter: blur(12px);
+    }
+
+    .selo::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--dourado);
+      box-shadow: 0 0 16px var(--dourado);
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 62px);
+      margin-bottom: 14px;
+      letter-spacing: -1.8px;
+      line-height: 1.02;
+    }
+
+    h1 strong {
+      color: var(--dourado);
+    }
+
+    .subtitulo {
+      color: var(--texto-suave);
+      font-size: 18px;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1180px;
+      margin: -42px auto 0;
+      padding: 0 20px 42px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .painel-controle {
+      background: rgba(255,255,255,0.11);
+      border: 1px solid var(--borda);
+      box-shadow: 0 18px 55px var(--sombra);
+      border-radius: 26px;
+      padding: 20px;
+      backdrop-filter: blur(20px);
+      margin-bottom: 26px;
+    }
+
+    .barra-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .barra-topo h2 {
+      color: var(--branco);
+      font-size: 24px;
+      letter-spacing: -0.3px;
+    }
+
+    .controles {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filtros {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filtro-btn {
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: var(--branco);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .filtro-btn:hover,
+    .filtro-btn.ativo {
+      background: var(--dourado);
+      color: #151515;
+      border-color: var(--dourado);
+      transform: translateY(-1px);
+    }
+
+    .busca {
+      width: min(100%, 340px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 16px;
+      padding: 13px 16px;
+      font-size: 15px;
+      outline: none;
+      background: rgba(255,255,255,0.10);
+      color: var(--branco);
+      backdrop-filter: blur(10px);
+    }
+
+    .busca::placeholder {
+      color: rgba(255,255,255,0.58);
+    }
+
+    .busca:focus {
+      border-color: var(--azul-claro);
+      box-shadow: 0 0 0 4px rgba(105,160,211,0.18);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .botao-novo {
+      background: linear-gradient(135deg, #f2ca3f, var(--dourado));
+      color: #151515;
+      border-color: var(--dourado);
+    }
+
+    .formulario-sistema {
+      margin-bottom: 26px;
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .form-card {
+      background: rgba(255,255,255,0.11);
+      border: 1px solid var(--borda);
+      box-shadow: 0 18px 55px var(--sombra);
+      border-radius: 26px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+    }
+
+    .form-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .form-header h2 {
+      color: var(--branco);
+      margin: 8px 0 6px;
+      font-size: 26px;
+    }
+
+    .form-header p {
+      color: var(--texto-suave);
+      line-height: 1.5;
+    }
+
+    .fechar {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.10);
+      color: var(--branco);
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .form-grid label {
+      color: var(--branco);
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .campo-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-grid input,
+    .form-grid select,
+    .form-grid textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 15px;
+      padding: 13px 15px;
+      font-size: 15px;
+      outline: none;
+      background: rgba(255,255,255,0.10);
+      color: var(--branco);
+    }
+
+    .form-grid select option {
+      color: #151515;
+    }
+
+    .form-grid input::placeholder,
+    .form-grid textarea::placeholder {
+      color: rgba(255,255,255,0.50);
+    }
+
+    .form-grid input:focus,
+    .form-grid select:focus,
+    .form-grid textarea:focus {
+      border-color: var(--azul-claro);
+      box-shadow: 0 0 0 4px rgba(105,160,211,0.18);
+    }
+
+    .upload-imagem input {
+      display: none;
+    }
+
+    .upload-imagem span {
+      border: 1px dashed rgba(105,160,211,0.72);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+      color: #d9e7f8;
+      background: rgba(105,160,211,0.08);
+      cursor: pointer;
+    }
+
+    .upload-imagem small {
+      color: var(--texto-suave);
+      font-weight: 400;
+    }
+
+    .form-acoes {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .salvar,
+    .limpar {
+      border: none;
+      border-radius: 15px;
+      padding: 14px 20px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+
+    .salvar {
+      background: linear-gradient(135deg, #f2ca3f, var(--dourado));
+      color: #151515;
+    }
+
+    .limpar {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--branco);
+    }
+
+    .salvar:hover,
+    .limpar:hover {
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+      transition: 0.25s ease;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      backdrop-filter: blur(18px);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 26px 58px rgba(0,0,0,0.32);
+      border-color: rgba(105,160,211,0.72);
+    }
+
+    .imagem-sistema {
+      height: 185px;
+      background: linear-gradient(135deg, rgba(105,160,211,0.20), rgba(255,255,255,0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      position: relative;
+    }
+
+    .imagem-sistema::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(2,7,17,0.45), transparent);
+      pointer-events: none;
+    }
+
+    .imagem-sistema img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .placeholder {
+      width: 86px;
+      height: 86px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
+      color: var(--branco);
+      font-size: 38px;
+      box-shadow: 0 12px 28px rgba(105,160,211,0.35);
+      z-index: 1;
+    }
+
+    .conteudo-card {
+      padding: 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tag {
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(214,174,0,0.18);
+      border: 1px solid rgba(214,174,0,0.32);
+      color: #ffd866;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      color: var(--branco);
+      font-size: 21px;
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+
+    .card p {
+      color: var(--texto-suave);
+      line-height: 1.6;
+      font-size: 14.5px;
+      margin-bottom: 22px;
+      flex: 1;
+    }
+
+    .abrir {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
+      color: var(--branco);
+      font-weight: 800;
+      font-size: 14px;
+      box-shadow: 0 12px 25px rgba(105,160,211,0.20);
+    }
+
+    .card:hover .abrir {
+      background: linear-gradient(135deg, #f2ca3f, var(--dourado));
+      color: #151515;
+    }
+
+    footer {
+      text-align: center;
+      color: rgba(255,255,255,0.56);
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    footer strong {
+      font-style: italic;
+      color: rgba(255,255,255,0.78);
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      main {
+        margin-top: -36px;
+      }
+
+      .barra-topo,
+      .controles {
+        align-items: stretch;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .filtros,
+      .busca {
+        width: 100%;
+      }
+
+      .filtro-btn {
+        flex: 1;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">
+        <div class="logo-icone">▦</div>
+        <span>PORTAL DE <strong>SISTEMAS</strong><br><small>Soluções digitais</small></span>
+      </div>
+      <div class="status"><span class="status-ponto"></span> Sistemas online</div>
+    </div>
+
+    <div class="hero">
+      <div class="selo">Central de Acessos Corporativa</div>
+      <h1>Todos os sistemas em <strong>um só lugar</strong></h1>
+      <p class="subtitulo">Acesse rapidamente os portais, conversores, dashboards e ferramentas criadas para apoiar as rotinas da empresa e seus projetos pessoais.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="painel-controle">
+      <div class="barra-topo">
+        <h2>Sistemas disponíveis</h2>
+        <div class="controles">
+          <div class="filtros">
+            <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
+            <button class="filtro-btn" data-filtro="empresa">Empresa</button>
+            <button class="filtro-btn" data-filtro="pessoal">Meus pessoais</button>
+          </div>
+          <input id="busca" class="busca" type="text" placeholder="Buscar sistema..." />
+          <button id="abrirCadastro" class="filtro-btn botao-novo">+ Novo sistema</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="formularioSistema" class="formulario-sistema oculto">
+      <div class="form-card">
+        <div class="form-header">
+          <div>
+            <span class="tag">Cadastro</span>
+            <h2>Adicionar novo sistema</h2>
+            <p>Inclua a imagem, o link e escolha onde esse sistema deve aparecer.</p>
+          </div>
+          <button id="fecharCadastro" class="fechar" type="button">×</button>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            Nome do sistema
+            <input id="novoNome" type="text" placeholder="Ex: Conversor de Relatórios" />
+          </label>
+
+          <label>
+            Categoria
+            <select id="novaCategoria">
+              <option value="empresa">Empresa</option>
+              <option value="pessoal">Meus pessoais</option>
+            </select>
+          </label>
+
+          <label class="campo-full">
+            Link do sistema
+            <input id="novoLink" type="url" placeholder="https://..." />
+          </label>
+
+          <label class="campo-full">
+            Descrição
+            <textarea id="novaDescricao" rows="3" placeholder="Explique brevemente para que serve esse sistema."></textarea>
+          </label>
+
+          <label class="campo-full upload-imagem">
+            Imagem do sistema
+            <input id="novaImagem" type="file" accept="image/*" />
+            <span>Selecionar imagem</span>
+            <small id="nomeImagem">Nenhuma imagem selecionada</small>
+          </label>
+        </div>
+
+        <div class="form-acoes">
+          <button id="salvarSistema" class="salvar" type="button">Salvar sistema</button>
+          <button id="limparSistemas" class="limpar" type="button">Limpar sistemas adicionados</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" id="listaSistemas">
+      <a class="card" href="https://robertolino2386.github.io/conversor-relatorios/" target="_blank" data-categoria="empresa" data-nome="conversor relatórios faturas benner excel empresa">
+        <div class="imagem-sistema">
+          <div class="placeholder">↥</div>
+          <!-- Para usar imagem, substitua o placeholder por: <img src="assets/conversor-relatorios.png" alt="Conversor de Relatórios"> -->
+        </div>
+        <div class="conteudo-card">
+          <span class="tag">Relatórios</span>
+          <h3>Conversor de Relatórios</h3>
+          <p>Converte a planilha recebida do Benner em um Excel tratado, padronizado e pronto para uso.</p>
+          <span class="abrir">Abrir sistema →</span>
+        </div>
+      </a>
+
+      <a class="card" href="#" target="_blank" data-categoria="empresa" data-nome="sistema exemplo cadastro clientes fornecedores empresa">
+        <div class="imagem-sistema">
+          <div class="placeholder">☷</div>
+        </div>
+        <div class="conteudo-card">
+          <span class="tag">Cadastro</span>
+          <h3>Cadastro de Clientes</h3>
+          <p>Área reservada para o portal de cadastro de clientes e fornecedores.</p>
+          <span class="abrir">Abrir sistema →</span>
+        </div>
+      </a>
+
+      <a class="card" href="#" target="_blank" data-categoria="empresa" data-nome="dashboard recebimentos adquirências cartão empresa">
+        <div class="imagem-sistema">
+          <div class="placeholder">▣</div>
+        </div>
+        <div class="conteudo-card">
+          <span class="tag">Dashboard</span>
+          <h3>Dashboard de Recebimentos</h3>
+          <p>Área reservada para dashboards e acompanhamentos de indicadores financeiros.</p>
+          <span class="abrir">Abrir sistema →</span>
+        </div>
+      </a>
+          <a class="card" href="#" target="_blank" data-categoria="pessoal" data-nome="projeto pessoal estudos automações">
+        <div class="imagem-sistema">
+          <div class="placeholder">✦</div>
+        </div>
+        <div class="conteudo-card">
+          <span class="tag">Pessoal</span>
+          <h3>Projetos Pessoais</h3>
+          <p>Área reservada para ferramentas, páginas e ideias criadas para uso pessoal.</p>
+          <span class="abrir">Abrir sistema →</span>
+        </div>
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    Desenvolvido por <strong>Roberto Lino</strong>
+  </footer>
+
+  <script>
+    const busca = document.getElementById('busca');
+    const listaSistemas = document.getElementById('listaSistemas');
+    const botoesFiltro = document.querySelectorAll('.filtro-btn[data-filtro]');
+    const abrirCadastro = document.getElementById('abrirCadastro');
+    const fecharCadastro = document.getElementById('fecharCadastro');
+    const formularioSistema = document.getElementById('formularioSistema');
+    const salvarSistema = document.getElementById('salvarSistema');
+    const limparSistemas = document.getElementById('limparSistemas');
+    const novaImagem = document.getElementById('novaImagem');
+    const nomeImagem = document.getElementById('nomeImagem');
+
+    let filtroAtual = 'todos';
+    let imagemBase64 = '';
+
+    function obterCards() {
+      return document.querySelectorAll('.card');
+    }
+
+    function aplicarFiltros() {
+      const termo = busca.value.toLowerCase().trim();
+
+      obterCards().forEach(card => {
+        const categoria = card.dataset.categoria;
+        const nome = card.dataset.nome.toLowerCase();
+        const texto = card.textContent.toLowerCase();
+        const bateCategoria = filtroAtual === 'todos' || categoria === filtroAtual;
+        const bateBusca = nome.includes(termo) || texto.includes(termo);
+
+        card.style.display = bateCategoria && bateBusca ? 'flex' : 'none';
+      });
+    }
+
+    function criarCard(sistema) {
+      const card = document.createElement('a');
+      card.className = 'card';
+      card.href = sistema.link || '#';
+      card.target = '_blank';
+      card.dataset.categoria = sistema.categoria;
+      card.dataset.nome = `${sistema.nome} ${sistema.descricao} ${sistema.categoria}`.toLowerCase();
+
+      const tag = sistema.categoria === 'empresa' ? 'Empresa' : 'Pessoal';
+      const imagem = sistema.imagem
+        ? `<img src="${sistema.imagem}" alt="${sistema.nome}">`
+        : '<div class="placeholder">▦</div>';
+
+      card.innerHTML = `
+        <div class="imagem-sistema">
+          ${imagem}
+        </div>
+        <div class="conteudo-card">
+          <span class="tag">${tag}</span>
+          <h3>${sistema.nome}</h3>
+          <p>${sistema.descricao}</p>
+          <span class="abrir">Abrir sistema →</span>
+        </div>
+      `;
+
+      listaSistemas.appendChild(card);
+    }
+
+    function carregarSistemasSalvos() {
+      const sistemas = JSON.parse(localStorage.getItem('portalSistemas') || '[]');
+      sistemas.forEach(criarCard);
+      aplicarFiltros();
+    }
+
+    function salvarNoNavegador(sistema) {
+      const sistemas = JSON.parse(localStorage.getItem('portalSistemas') || '[]');
+      sistemas.push(sistema);
+      localStorage.setItem('portalSistemas', JSON.stringify(sistemas));
+    }
+
+    busca.addEventListener('input', aplicarFiltros);
+
+    botoesFiltro.forEach(botao => {
+      botao.addEventListener('click', () => {
+        botoesFiltro.forEach(item => item.classList.remove('ativo'));
+        botao.classList.add('ativo');
+        filtroAtual = botao.dataset.filtro;
+        aplicarFiltros();
+      });
+    });
+
+    abrirCadastro.addEventListener('click', () => {
+      formularioSistema.classList.remove('oculto');
+      formularioSistema.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    fecharCadastro.addEventListener('click', () => {
+      formularioSistema.classList.add('oculto');
+    });
+
+    novaImagem.addEventListener('change', () => {
+      const arquivo = novaImagem.files[0];
+      imagemBase64 = '';
+      nomeImagem.textContent = arquivo ? arquivo.name : 'Nenhuma imagem selecionada';
+
+      if (!arquivo) return;
+
+      const leitor = new FileReader();
+      leitor.onload = evento => {
+        imagemBase64 = evento.target.result;
+      };
+      leitor.readAsDataURL(arquivo);
+    });
+
+    salvarSistema.addEventListener('click', () => {
+      const nome = document.getElementById('novoNome').value.trim();
+      const categoria = document.getElementById('novaCategoria').value;
+      const link = document.getElementById('novoLink').value.trim();
+      const descricao = document.getElementById('novaDescricao').value.trim();
+
+      if (!nome || !link || !descricao) {
+        alert('Preencha nome, link e descrição do sistema.');
+        return;
+      }
+
+      const sistema = {
+        nome,
+        categoria,
+        link,
+        descricao,
+        imagem: imagemBase64
+      };
+
+      criarCard(sistema);
+      salvarNoNavegador(sistema);
+      aplicarFiltros();
+
+      document.getElementById('novoNome').value = '';
+      document.getElementById('novoLink').value = '';
+      document.getElementById('novaDescricao').value = '';
+      document.getElementById('novaCategoria').value = 'empresa';
+      novaImagem.value = '';
+      nomeImagem.textContent = 'Nenhuma imagem selecionada';
+      imagemBase64 = '';
+      formularioSistema.classList.add('oculto');
+    });
+
+    limparSistemas.addEventListener('click', () => {
+      if (!confirm('Deseja remover os sistemas adicionados neste navegador?')) return;
+      localStorage.removeItem('portalSistemas');
+      location.reload();
+    });
+
+    carregarSistemasSalvos();
+  </script>
+</body>
+</html>
