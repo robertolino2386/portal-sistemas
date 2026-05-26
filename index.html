@@ -10,14 +10,14 @@
       --azul-claro: #69A0D3;
       --azul-escuro: #00285C;
       --dourado: #D6AE00;
-      --fundo: #07111f;
+      --fundo: #f6f8fb;
       --branco: #ffffff;
-      --texto: #f8fbff;
-      --texto-suave: #b9c6d8;
-      --borda: rgba(255,255,255,0.16);
-      --vidro: rgba(255,255,255,0.09);
-      --vidro-forte: rgba(255,255,255,0.14);
-      --sombra: rgba(0, 0, 0, 0.32);
+      --texto: #172033;
+      --texto-suave: #667085;
+      --borda: #d9e3ef;
+      --borda-suave: #edf2f7;
+      --sombra: rgba(0, 40, 92, 0.08);
+      --sombra-hover: rgba(0, 40, 92, 0.14);
     }
 
     * {
@@ -30,38 +30,22 @@
     body {
       min-height: 100vh;
       background:
-        linear-gradient(rgba(0, 20, 48, 0.82), rgba(2, 7, 17, 0.92)),
-        radial-gradient(circle at top left, rgba(105,160,211,0.38), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(214,174,0,0.22), transparent 28%),
-        linear-gradient(135deg, #061225, #020711 72%);
+        radial-gradient(circle at top left, rgba(105,160,211,0.16), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, var(--fundo) 48%, #eef4fa 100%);
       color: var(--texto);
     }
 
     header {
-      min-height: 310px;
-      padding: 34px 24px 70px;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255,255,255,0.10);
-    }
-
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
+      padding: 30px 24px 54px;
       background:
-        linear-gradient(90deg, rgba(105,160,211,0.06) 1px, transparent 1px),
-        linear-gradient(rgba(105,160,211,0.06) 1px, transparent 1px);
-      background-size: 52px 52px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
-      pointer-events: none;
+        linear-gradient(135deg, rgba(255,255,255,0.96), rgba(248,251,255,0.96)),
+        radial-gradient(circle at top right, rgba(105,160,211,0.20), transparent 38%);
+      border-bottom: 1px solid var(--borda-suave);
     }
 
     .nav {
-      position: relative;
-      z-index: 1;
       max-width: 1180px;
-      margin: 0 auto 46px;
+      margin: 0 auto 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -71,20 +55,29 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 13px;
       font-weight: 800;
-      letter-spacing: 0.3px;
+      color: var(--azul-escuro);
+      letter-spacing: 0.2px;
+      font-size: 14px;
+    }
+
+    .logo small {
+      color: var(--texto-suave);
+      font-weight: 600;
+      font-size: 11px;
     }
 
     .logo-icone {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
-      box-shadow: 0 12px 30px rgba(105,160,211,0.28);
-      font-size: 24px;
+      box-shadow: 0 10px 24px rgba(105,160,211,0.28);
+      color: var(--branco);
+      font-size: 21px;
     }
 
     .logo span strong {
@@ -94,28 +87,27 @@
     .status {
       display: flex;
       align-items: center;
-      gap: 10px;
-      color: #d9e7f8;
-      font-size: 14px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.14);
-      padding: 10px 14px;
+      gap: 9px;
+      color: var(--azul-escuro);
+      font-size: 13px;
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      padding: 9px 13px;
       border-radius: 999px;
-      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 22px var(--sombra);
+      font-weight: 700;
     }
 
     .status-ponto {
-      width: 9px;
-      height: 9px;
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
-      background: #36d399;
-      box-shadow: 0 0 18px #36d399;
+      background: #36b37e;
+      box-shadow: 0 0 12px rgba(54,179,126,0.65);
     }
 
     .hero {
-      position: relative;
-      z-index: 1;
-      max-width: 860px;
+      max-width: 790px;
       margin: 0 auto;
       text-align: center;
     }
@@ -124,14 +116,15 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 16px;
+      padding: 8px 15px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.18);
-      font-size: 13px;
+      background: #f8fbff;
+      border: 1px solid var(--borda);
+      color: var(--azul-escuro);
+      font-size: 12px;
+      font-weight: 700;
       margin-bottom: 18px;
-      letter-spacing: 0.3px;
-      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 22px var(--sombra);
     }
 
     .selo::before {
@@ -140,45 +133,45 @@
       height: 8px;
       border-radius: 999px;
       background: var(--dourado);
-      box-shadow: 0 0 16px var(--dourado);
     }
 
     h1 {
-      font-size: clamp(34px, 6vw, 62px);
-      margin-bottom: 14px;
-      letter-spacing: -1.8px;
-      line-height: 1.02;
+      font-size: clamp(30px, 5vw, 52px);
+      margin-bottom: 12px;
+      letter-spacing: -1.5px;
+      line-height: 1.04;
+      color: var(--azul-escuro);
     }
 
     h1 strong {
-      color: var(--dourado);
+      color: var(--azul-claro);
     }
 
     .subtitulo {
       color: var(--texto-suave);
-      font-size: 18px;
-      max-width: 760px;
+      font-size: 16px;
+      max-width: 720px;
       margin: 0 auto;
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     main {
       width: 100%;
       max-width: 1180px;
-      margin: -42px auto 0;
+      margin: -30px auto 0;
       padding: 0 20px 42px;
       position: relative;
       z-index: 2;
     }
 
-    .painel-controle {
-      background: rgba(255,255,255,0.11);
-      border: 1px solid var(--borda);
-      box-shadow: 0 18px 55px var(--sombra);
-      border-radius: 26px;
-      padding: 20px;
-      backdrop-filter: blur(20px);
-      margin-bottom: 26px;
+    .painel-controle,
+    .form-card {
+      background: var(--branco);
+      border: 1px solid var(--borda-suave);
+      box-shadow: 0 16px 44px var(--sombra);
+      border-radius: 24px;
+      padding: 18px;
+      margin-bottom: 24px;
     }
 
     .barra-topo {
@@ -190,31 +183,32 @@
     }
 
     .barra-topo h2 {
-      color: var(--branco);
-      font-size: 24px;
+      color: var(--azul-escuro);
+      font-size: 21px;
       letter-spacing: -0.3px;
     }
 
     .controles {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       align-items: center;
     }
 
     .filtros {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .filtro-btn {
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: var(--branco);
+      border: 1px solid var(--borda);
+      background: #f8fbff;
+      color: var(--azul-escuro);
       border-radius: 999px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       font-weight: 700;
+      font-size: 13px;
       cursor: pointer;
       transition: 0.22s ease;
       white-space: nowrap;
@@ -222,101 +216,85 @@
 
     .filtro-btn:hover,
     .filtro-btn.ativo {
-      background: var(--dourado);
-      color: #151515;
-      border-color: var(--dourado);
+      background: var(--azul-escuro);
+      color: var(--branco);
+      border-color: var(--azul-escuro);
       transform: translateY(-1px);
     }
 
-    .busca {
-      width: min(100%, 340px);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 16px;
-      padding: 13px 16px;
-      font-size: 15px;
-      outline: none;
-      background: rgba(255,255,255,0.10);
+    .botao-novo {
+      background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
       color: var(--branco);
-      backdrop-filter: blur(10px);
+      border-color: transparent;
+    }
+
+    .busca {
+      width: min(100%, 315px);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 11px 14px;
+      font-size: 14px;
+      outline: none;
+      background: var(--branco);
+      color: var(--texto);
     }
 
     .busca::placeholder {
-      color: rgba(255,255,255,0.58);
+      color: #98a2b3;
     }
 
-    .busca:focus {
+    .busca:focus,
+    .form-grid input:focus,
+    .form-grid select:focus,
+    .form-grid textarea:focus {
       border-color: var(--azul-claro);
-      box-shadow: 0 0 0 4px rgba(105,160,211,0.18);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .botao-novo {
-      background: linear-gradient(135deg, #f2ca3f, var(--dourado));
-      color: #151515;
-      border-color: var(--dourado);
-    }
-
-    .formulario-sistema {
-      margin-bottom: 26px;
+      box-shadow: 0 0 0 4px rgba(105,160,211,0.16);
     }
 
     .oculto {
       display: none;
     }
 
-    .form-card {
-      background: rgba(255,255,255,0.11);
-      border: 1px solid var(--borda);
-      box-shadow: 0 18px 55px var(--sombra);
-      border-radius: 26px;
-      padding: 24px;
-      backdrop-filter: blur(20px);
-    }
-
     .form-header {
       display: flex;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .form-header h2 {
-      color: var(--branco);
+      color: var(--azul-escuro);
       margin: 8px 0 6px;
-      font-size: 26px;
+      font-size: 23px;
     }
 
     .form-header p {
       color: var(--texto-suave);
       line-height: 1.5;
+      font-size: 14px;
     }
 
     .fechar {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.10);
-      color: var(--branco);
-      font-size: 28px;
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      border: 1px solid var(--borda);
+      background: #f8fbff;
+      color: var(--azul-escuro);
+      font-size: 25px;
       cursor: pointer;
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      gap: 15px;
     }
 
     .form-grid label {
-      color: var(--branco);
+      color: var(--azul-escuro);
       font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -330,29 +308,18 @@
     .form-grid select,
     .form-grid textarea {
       width: 100%;
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 15px;
-      padding: 13px 15px;
-      font-size: 15px;
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 14px;
       outline: none;
-      background: rgba(255,255,255,0.10);
-      color: var(--branco);
-    }
-
-    .form-grid select option {
-      color: #151515;
+      background: #ffffff;
+      color: var(--texto);
     }
 
     .form-grid input::placeholder,
     .form-grid textarea::placeholder {
-      color: rgba(255,255,255,0.50);
-    }
-
-    .form-grid input:focus,
-    .form-grid select:focus,
-    .form-grid textarea:focus {
-      border-color: var(--azul-claro);
-      box-shadow: 0 0 0 4px rgba(105,160,211,0.18);
+      color: #98a2b3;
     }
 
     .upload-imagem input {
@@ -360,13 +327,14 @@
     }
 
     .upload-imagem span {
-      border: 1px dashed rgba(105,160,211,0.72);
-      border-radius: 16px;
-      padding: 18px;
+      border: 1px dashed rgba(105,160,211,0.75);
+      border-radius: 15px;
+      padding: 16px;
       text-align: center;
-      color: #d9e7f8;
-      background: rgba(105,160,211,0.08);
+      color: var(--azul-escuro);
+      background: #f8fbff;
       cursor: pointer;
+      font-size: 14px;
     }
 
     .upload-imagem small {
@@ -381,38 +349,35 @@
       flex-wrap: wrap;
     }
 
-    .salvar,
-    .limpar {
+    .salvar {
       border: none;
-      border-radius: 15px;
-      padding: 14px 20px;
+      border-radius: 14px;
+      padding: 13px 20px;
       font-weight: 800;
+      font-size: 14px;
       cursor: pointer;
       transition: 0.22s ease;
-    }
-
-    .salvar {
-      background: linear-gradient(135deg, #f2ca3f, var(--dourado));
-      color: #151515;
-    }
-
-    .limpar {
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.16);
+      background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
       color: var(--branco);
     }
 
-    .salvar:hover,
-    .limpar:hover {
+    .salvar:hover {
       transform: translateY(-2px);
     }
 
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 22px;
+    }
+
     .card {
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 26px;
+      position: relative;
+      background: var(--branco);
+      border: 1px solid var(--borda-suave);
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 18px 48px rgba(0,0,0,0.22);
+      box-shadow: 0 14px 34px var(--sombra);
       transition: 0.25s ease;
       cursor: pointer;
       text-decoration: none;
@@ -420,32 +385,57 @@
       display: flex;
       flex-direction: column;
       min-height: 100%;
-      backdrop-filter: blur(18px);
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 26px 58px rgba(0,0,0,0.32);
-      border-color: rgba(105,160,211,0.72);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 44px var(--sombra-hover);
+      border-color: rgba(105,160,211,0.65);
+    }
+
+    .acoes-card {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 5;
+      display: flex;
+      gap: 7px;
+    }
+
+    .acao-card {
+      width: 31px;
+      height: 31px;
+      border: 1px solid rgba(255,255,255,0.82);
+      background: rgba(255,255,255,0.92);
+      color: var(--azul-escuro);
+      border-radius: 11px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      transition: 0.2s ease;
+    }
+
+    .acao-card:hover {
+      transform: translateY(-1px);
+      background: var(--azul-escuro);
+      color: var(--branco);
+    }
+
+    .excluir:hover {
+      background: #d92d20;
+      color: var(--branco);
     }
 
     .imagem-sistema {
-      height: 185px;
-      background: linear-gradient(135deg, rgba(105,160,211,0.20), rgba(255,255,255,0.08));
+      height: 165px;
+      background: linear-gradient(135deg, #eef6fd, #ffffff);
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid var(--borda-suave);
       position: relative;
-    }
-
-    .imagem-sistema::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(2,7,17,0.45), transparent);
-      pointer-events: none;
     }
 
     .imagem-sistema img {
@@ -456,20 +446,19 @@
     }
 
     .placeholder {
-      width: 86px;
-      height: 86px;
-      border-radius: 24px;
+      width: 74px;
+      height: 74px;
+      border-radius: 22px;
       display: grid;
       place-items: center;
       background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
       color: var(--branco);
-      font-size: 38px;
-      box-shadow: 0 12px 28px rgba(105,160,211,0.35);
-      z-index: 1;
+      font-size: 31px;
+      box-shadow: 0 10px 22px rgba(105,160,211,0.28);
     }
 
     .conteudo-card {
-      padding: 22px;
+      padding: 19px;
       flex: 1;
       display: flex;
       flex-direction: column;
@@ -477,28 +466,28 @@
 
     .tag {
       width: fit-content;
-      padding: 7px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(214,174,0,0.18);
-      border: 1px solid rgba(214,174,0,0.32);
-      color: #ffd866;
-      font-size: 12px;
+      background: rgba(105,160,211,0.13);
+      border: 1px solid rgba(105,160,211,0.24);
+      color: var(--azul-escuro);
+      font-size: 11px;
       font-weight: 800;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .card h3 {
-      color: var(--branco);
-      font-size: 21px;
-      margin-bottom: 10px;
+      color: var(--azul-escuro);
+      font-size: 17px;
+      margin-bottom: 8px;
       letter-spacing: -0.2px;
     }
 
     .card p {
       color: var(--texto-suave);
-      line-height: 1.6;
-      font-size: 14.5px;
-      margin-bottom: 22px;
+      line-height: 1.55;
+      font-size: 13.3px;
+      margin-bottom: 18px;
       flex: 1;
     }
 
@@ -508,30 +497,30 @@
       justify-content: center;
       gap: 8px;
       width: 100%;
-      padding: 13px 16px;
-      border-radius: 15px;
-      background: linear-gradient(135deg, var(--azul-claro), var(--azul-escuro));
+      padding: 11px 14px;
+      border-radius: 13px;
+      background: var(--azul-escuro);
       color: var(--branco);
       font-weight: 800;
-      font-size: 14px;
-      box-shadow: 0 12px 25px rgba(105,160,211,0.20);
+      font-size: 13px;
+      box-shadow: 0 10px 22px rgba(0,40,92,0.16);
     }
 
     .card:hover .abrir {
-      background: linear-gradient(135deg, #f2ca3f, var(--dourado));
-      color: #151515;
+      background: var(--azul-claro);
+      color: var(--branco);
     }
 
     footer {
       text-align: center;
-      color: rgba(255,255,255,0.56);
+      color: #8a94a6;
       padding: 20px;
       font-size: 13px;
     }
 
     footer strong {
       font-style: italic;
-      color: rgba(255,255,255,0.78);
+      color: #667085;
     }
 
     @media (max-width: 760px) {
@@ -541,7 +530,7 @@
       }
 
       main {
-        margin-top: -36px;
+        margin-top: -26px;
       }
 
       .barra-topo,
@@ -604,7 +593,7 @@
         <div class="form-header">
           <div>
             <span class="tag">Cadastro</span>
-            <h2>Adicionar novo sistema</h2>
+            <h2 id="tituloFormulario">Adicionar novo sistema</h2>
             <p>Inclua a imagem, o link e escolha onde esse sistema deve aparecer.</p>
           </div>
           <button id="fecharCadastro" class="fechar" type="button">×</button>
@@ -644,49 +633,64 @@
 
         <div class="form-acoes">
           <button id="salvarSistema" class="salvar" type="button">Salvar sistema</button>
-          <button id="limparSistemas" class="limpar" type="button">Limpar sistemas adicionados</button>
         </div>
       </div>
     </section>
 
     <section class="grid" id="listaSistemas">
-      <a class="card" href="https://robertolino2386.github.io/conversor-relatorios/" target="_blank" data-categoria="empresa" data-nome="conversor relatórios faturas benner excel empresa">
+      <a class="card" href="https://robertolino2386.github.io/conversor-relatorios/" target="_blank" data-id="fixo-1" data-fixo="true" data-categoria="empresa" data-nome="conversor relatórios faturas benner excel empresa">
+        <div class="acoes-card">
+          <button class="acao-card editar" type="button" title="Editar">✎</button>
+          <button class="acao-card excluir" type="button" title="Excluir">×</button>
+        </div>
         <div class="imagem-sistema">
           <div class="placeholder">↥</div>
-          <!-- Para usar imagem, substitua o placeholder por: <img src="assets/conversor-relatorios.png" alt="Conversor de Relatórios"> -->
         </div>
         <div class="conteudo-card">
-          <span class="tag">Relatórios</span>
+          <span class="tag">Empresa</span>
           <h3>Conversor de Relatórios</h3>
           <p>Converte a planilha recebida do Benner em um Excel tratado, padronizado e pronto para uso.</p>
           <span class="abrir">Abrir sistema →</span>
         </div>
       </a>
 
-      <a class="card" href="#" target="_blank" data-categoria="empresa" data-nome="sistema exemplo cadastro clientes fornecedores empresa">
+      <a class="card" href="#" target="_blank" data-id="fixo-2" data-fixo="true" data-categoria="empresa" data-nome="sistema exemplo cadastro clientes fornecedores empresa">
+        <div class="acoes-card">
+          <button class="acao-card editar" type="button" title="Editar">✎</button>
+          <button class="acao-card excluir" type="button" title="Excluir">×</button>
+        </div>
         <div class="imagem-sistema">
           <div class="placeholder">☷</div>
         </div>
         <div class="conteudo-card">
-          <span class="tag">Cadastro</span>
+          <span class="tag">Empresa</span>
           <h3>Cadastro de Clientes</h3>
           <p>Área reservada para o portal de cadastro de clientes e fornecedores.</p>
           <span class="abrir">Abrir sistema →</span>
         </div>
       </a>
 
-      <a class="card" href="#" target="_blank" data-categoria="empresa" data-nome="dashboard recebimentos adquirências cartão empresa">
+      <a class="card" href="#" target="_blank" data-id="fixo-3" data-fixo="true" data-categoria="empresa" data-nome="dashboard recebimentos adquirências cartão empresa">
+        <div class="acoes-card">
+          <button class="acao-card editar" type="button" title="Editar">✎</button>
+          <button class="acao-card excluir" type="button" title="Excluir">×</button>
+        </div>
         <div class="imagem-sistema">
           <div class="placeholder">▣</div>
         </div>
         <div class="conteudo-card">
-          <span class="tag">Dashboard</span>
+          <span class="tag">Empresa</span>
           <h3>Dashboard de Recebimentos</h3>
           <p>Área reservada para dashboards e acompanhamentos de indicadores financeiros.</p>
           <span class="abrir">Abrir sistema →</span>
         </div>
       </a>
-          <a class="card" href="#" target="_blank" data-categoria="pessoal" data-nome="projeto pessoal estudos automações">
+
+      <a class="card" href="#" target="_blank" data-id="fixo-4" data-fixo="true" data-categoria="pessoal" data-nome="projeto pessoal estudos automações">
+        <div class="acoes-card">
+          <button class="acao-card editar" type="button" title="Editar">✎</button>
+          <button class="acao-card excluir" type="button" title="Excluir">×</button>
+        </div>
         <div class="imagem-sistema">
           <div class="placeholder">✦</div>
         </div>
@@ -712,12 +716,13 @@
     const fecharCadastro = document.getElementById('fecharCadastro');
     const formularioSistema = document.getElementById('formularioSistema');
     const salvarSistema = document.getElementById('salvarSistema');
-    const limparSistemas = document.getElementById('limparSistemas');
     const novaImagem = document.getElementById('novaImagem');
     const nomeImagem = document.getElementById('nomeImagem');
+    const tituloFormulario = document.getElementById('tituloFormulario');
 
     let filtroAtual = 'todos';
     let imagemBase64 = '';
+    let editandoId = null;
 
     function obterCards() {
       return document.querySelectorAll('.card');
@@ -737,11 +742,16 @@
       });
     }
 
+    function gerarId() {
+      return `sistema-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+    }
+
     function criarCard(sistema) {
       const card = document.createElement('a');
       card.className = 'card';
       card.href = sistema.link || '#';
       card.target = '_blank';
+      card.dataset.id = sistema.id;
       card.dataset.categoria = sistema.categoria;
       card.dataset.nome = `${sistema.nome} ${sistema.descricao} ${sistema.categoria}`.toLowerCase();
 
@@ -751,6 +761,10 @@
         : '<div class="placeholder">▦</div>';
 
       card.innerHTML = `
+        <div class="acoes-card">
+          <button class="acao-card editar" type="button" title="Editar">✎</button>
+          <button class="acao-card excluir" type="button" title="Excluir">×</button>
+        </div>
         <div class="imagem-sistema">
           ${imagem}
         </div>
@@ -765,16 +779,64 @@
       listaSistemas.appendChild(card);
     }
 
+    function obterSistemasSalvos() {
+      return JSON.parse(localStorage.getItem('portalSistemas') || '[]');
+    }
+
+    function gravarSistemas(sistemas) {
+      localStorage.setItem('portalSistemas', JSON.stringify(sistemas));
+    }
+
     function carregarSistemasSalvos() {
-      const sistemas = JSON.parse(localStorage.getItem('portalSistemas') || '[]');
+      const sistemas = obterSistemasSalvos();
       sistemas.forEach(criarCard);
       aplicarFiltros();
     }
 
-    function salvarNoNavegador(sistema) {
-      const sistemas = JSON.parse(localStorage.getItem('portalSistemas') || '[]');
-      sistemas.push(sistema);
-      localStorage.setItem('portalSistemas', JSON.stringify(sistemas));
+    function limparFormulario() {
+      document.getElementById('novoNome').value = '';
+      document.getElementById('novoLink').value = '';
+      document.getElementById('novaDescricao').value = '';
+      document.getElementById('novaCategoria').value = 'empresa';
+      novaImagem.value = '';
+      nomeImagem.textContent = 'Nenhuma imagem selecionada';
+      imagemBase64 = '';
+      editandoId = null;
+      tituloFormulario.textContent = 'Adicionar novo sistema';
+      salvarSistema.textContent = 'Salvar sistema';
+    }
+
+    function abrirFormularioEdicao(card) {
+      editandoId = card.dataset.id;
+      const nome = card.querySelector('h3').textContent.trim();
+      const descricao = card.querySelector('p').textContent.trim();
+      const categoria = card.dataset.categoria;
+      const link = card.getAttribute('href');
+      const imagem = card.querySelector('img');
+
+      document.getElementById('novoNome').value = nome;
+      document.getElementById('novoLink').value = link === '#' ? '' : link;
+      document.getElementById('novaDescricao').value = descricao;
+      document.getElementById('novaCategoria').value = categoria;
+      imagemBase64 = imagem ? imagem.getAttribute('src') : '';
+      nomeImagem.textContent = imagem ? 'Imagem atual mantida' : 'Nenhuma imagem selecionada';
+      tituloFormulario.textContent = 'Editar sistema';
+      salvarSistema.textContent = 'Salvar alterações';
+
+      formularioSistema.classList.remove('oculto');
+      formularioSistema.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function atualizarCard(card, sistema) {
+      card.href = sistema.link || '#';
+      card.dataset.categoria = sistema.categoria;
+      card.dataset.nome = `${sistema.nome} ${sistema.descricao} ${sistema.categoria}`.toLowerCase();
+      const tag = sistema.categoria === 'empresa' ? 'Empresa' : 'Pessoal';
+      const imagemArea = card.querySelector('.imagem-sistema');
+      imagemArea.innerHTML = sistema.imagem ? `<img src="${sistema.imagem}" alt="${sistema.nome}">` : '<div class="placeholder">▦</div>';
+      card.querySelector('.tag').textContent = tag;
+      card.querySelector('h3').textContent = sistema.nome;
+      card.querySelector('p').textContent = sistema.descricao;
     }
 
     busca.addEventListener('input', aplicarFiltros);
@@ -789,17 +851,18 @@
     });
 
     abrirCadastro.addEventListener('click', () => {
+      limparFormulario();
       formularioSistema.classList.remove('oculto');
       formularioSistema.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 
     fecharCadastro.addEventListener('click', () => {
       formularioSistema.classList.add('oculto');
+      limparFormulario();
     });
 
     novaImagem.addEventListener('change', () => {
       const arquivo = novaImagem.files[0];
-      imagemBase64 = '';
       nomeImagem.textContent = arquivo ? arquivo.name : 'Nenhuma imagem selecionada';
 
       if (!arquivo) return;
@@ -823,6 +886,7 @@
       }
 
       const sistema = {
+        id: editandoId || gerarId(),
         nome,
         categoria,
         link,
@@ -830,28 +894,56 @@
         imagem: imagemBase64
       };
 
-      criarCard(sistema);
-      salvarNoNavegador(sistema);
-      aplicarFiltros();
+      if (editandoId) {
+        const card = document.querySelector(`.card[data-id="${editandoId}"]`);
+        if (card) atualizarCard(card, sistema);
 
-      document.getElementById('novoNome').value = '';
-      document.getElementById('novoLink').value = '';
-      document.getElementById('novaDescricao').value = '';
-      document.getElementById('novaCategoria').value = 'empresa';
-      novaImagem.value = '';
-      nomeImagem.textContent = 'Nenhuma imagem selecionada';
-      imagemBase64 = '';
+        const sistemas = obterSistemasSalvos();
+        const index = sistemas.findIndex(item => item.id === editandoId);
+        if (index >= 0) {
+          sistemas[index] = sistema;
+          gravarSistemas(sistemas);
+        }
+      } else {
+        criarCard(sistema);
+        const sistemas = obterSistemasSalvos();
+        sistemas.push(sistema);
+        gravarSistemas(sistemas);
+      }
+
+      aplicarFiltros();
+      limparFormulario();
       formularioSistema.classList.add('oculto');
     });
 
-    limparSistemas.addEventListener('click', () => {
-      if (!confirm('Deseja remover os sistemas adicionados neste navegador?')) return;
-      localStorage.removeItem('portalSistemas');
-      location.reload();
+    listaSistemas.addEventListener('click', (evento) => {
+      const botaoEditar = evento.target.closest('.editar');
+      const botaoExcluir = evento.target.closest('.excluir');
+
+      if (!botaoEditar && !botaoExcluir) return;
+
+      evento.preventDefault();
+      evento.stopPropagation();
+
+      const card = evento.target.closest('.card');
+      const id = card.dataset.id;
+
+      if (botaoEditar) {
+        abrirFormularioEdicao(card);
+        return;
+      }
+
+      if (botaoExcluir) {
+        if (!confirm('Deseja excluir este sistema do portal?')) return;
+
+        card.remove();
+        const sistemas = obterSistemasSalvos().filter(item => item.id !== id);
+        gravarSistemas(sistemas);
+        aplicarFiltros();
+      }
     });
 
     carregarSistemasSalvos();
   </script>
 </body>
 </html>
-
